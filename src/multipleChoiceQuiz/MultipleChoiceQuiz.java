@@ -265,6 +265,7 @@ public class MultipleChoiceQuiz extends javax.swing.JFrame {
         answerLbl.setVisible(false);
         submitBtn.setVisible(false);
         answerTxtField.setVisible(false);
+        nextBtn.setVisible(false);
         //Getting the final percentage of the answers
         percentage = ((double)correct/5)*100;
         percentageLbl.setText("You got " + percent.format(percentage) + "%");
