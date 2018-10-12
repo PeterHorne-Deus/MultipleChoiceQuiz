@@ -22,7 +22,7 @@ public class MultipleChoiceQuiz extends javax.swing.JFrame {
     String answer;
     
     //Creating a decimal format
-    DecimalFormat percent = new DecimalFormat("###");
+    DecimalFormat percent = new DecimalFormat("###.#");
     
         
     public MultipleChoiceQuiz() {
@@ -192,60 +192,69 @@ public class MultipleChoiceQuiz extends javax.swing.JFrame {
         incorrectLbl.setVisible(true);
         correctLbl.setVisible(true);
         
-        //Reenabling the submit button
+        //Re-enabling the submit button
         submitBtn.setEnabled(true);
         
         //Making it the first question
         question = question + 1;
         
-        //Creating Question One
+        //Creating Questions
         if (question == 1){
             //random Numbers
             randomNumber = (int)Math.round(Math.random()*16+1);
             randomNumber1 = (int)Math.round(Math.random()*31+1);
             randomNumber2 = (int)Math.round(Math.random()*3+1);
+            //Creating answers
             answerALbl.setText("A) 8");
             answerBLbl.setText("B) " + randomNumber);
             answerCLbl.setText("C) " + randomNumber1);
             answerDLbl.setText("D) " + randomNumber2);
         }
         else if (question == 2){
+            //Making the question
             questionNumLbl.setText("Question #2");
             questionLbl.setText("How Many Pins Are In The Main Mother Board Power Connector?");
             //random Numbers
             randomNumber = (int)Math.round(Math.random()*13+1);
             randomNumber1 = (int)Math.round(Math.random()*11+1);
             randomNumber2 = (int)Math.round(Math.random()*7+1);
+            //Setting Up answers
             answerALbl.setText("A) " + randomNumber1);
             answerBLbl.setText("B) 24");
             answerCLbl.setText("C) " + randomNumber2);
             answerDLbl.setText("D) " + randomNumber);
         }
         else if (question == 3){
+            //Making the question
             questionNumLbl.setText("Question #3");
             questionLbl.setText("What Item On The Mother Board Keeps Time When Computer Is Off");
+            //Creating the answers
             answerALbl.setText("A) Clock");
             answerBLbl.setText("B) RAM");
             answerCLbl.setText("C) SATA");
             answerDLbl.setText("D) CMOS");
         }
         else if (question == 4){
+            //Creating questions
             questionNumLbl.setText("Question #4");
             questionLbl.setText("What Is The Most Popular Coding Language");
+            //Creating Answers
             answerALbl.setText("A) Python");
             answerBLbl.setText("B) Java");
             answerCLbl.setText("C) SATA");
             answerDLbl.setText("D) Arduino");
         }
         else if (question == 5){
+            //Creating questions
             questionNumLbl.setText("Question #5");
             questionLbl.setText("Why Is Machine Code In Binary");
+            //Creating Answers
             answerALbl.setText("A) Transistor");
             answerBLbl.setText("B) Resistor");
             answerCLbl.setText("C) Potentiometer");
             answerDLbl.setText("D) Radio Button");
         }
-        else {
+        else { //End of Quiz final Page
         //Turning off labels    
         questionNumLbl.setVisible(false);
         questionLbl.setVisible(false);
@@ -261,6 +270,7 @@ public class MultipleChoiceQuiz extends javax.swing.JFrame {
         percentageLbl.setText("You got " + percent.format(percentage) + "%");
         
         }
+        
         //disabling the next button until question is answerd
         if (question == 6){
             nextBtn.setEnabled(true);
@@ -275,81 +285,129 @@ public class MultipleChoiceQuiz extends javax.swing.JFrame {
         //getting user input
         answer = answerTxtField.getText();
 
-       
-        
-        
         //Seeing if it is correct depending on question 
         if (answer.equalsIgnoreCase("a") && question == 1){
+            //Adding a point for on correct answer
             correct = correct + 1;
-            submitBtn.setEnabled(false);//Disableing the button
+            //Disabling the submit button
+            submitBtn.setEnabled(false);
+            //Clearing Answer text field
             answerTxtField.setText("");
+            //Setting the next button to enabled
             nextBtn.setEnabled(true);
+            //Not allowing the message of an incorrect input to go out
             messageLbl.setVisible(false);
         }
         else if (answer.equalsIgnoreCase("b") && question == 2){
+            //Adding a point for on correct answer
             correct = correct + 1;
-            submitBtn.setEnabled(false);//Disableing the button
+            //Disabling the submit button
+            submitBtn.setEnabled(false);
+            //Clearing Answer text field
             answerTxtField.setText("");
+            //Setting the next button to enabled
             nextBtn.setEnabled(true);
+            //Not allowing the message of an incorrect input to go out
             messageLbl.setVisible(false);
         }
         else if (answer.equalsIgnoreCase("d") && question == 3){
+            //Adding a point for on correct answer
             correct = correct + 1;
-            submitBtn.setEnabled(false);//Disableing the button
+            //Disabling the submit button
+            submitBtn.setEnabled(false);
+            //Clearing Answer text field
             answerTxtField.setText("");
+            //Setting the next button to enabled
             nextBtn.setEnabled(true);
+            //Not allowing the message of an incorrect input to go out
             messageLbl.setVisible(false);
         }
         else if (answer.equalsIgnoreCase("b") && question == 4){
+            //Adding a point for on correct answer
             correct = correct + 1;
-            submitBtn.setEnabled(false);//Disableing the button
+            //Disabling the submit button
+            submitBtn.setEnabled(false);
+            //Clearing Answer text field
             answerTxtField.setText("");
+            //Setting the next button to enabled
             nextBtn.setEnabled(true);
+            //Not allowing the message of an incorrect input to go out
             messageLbl.setVisible(false);
         }
         else if (answer.equalsIgnoreCase("a") && question == 5){
+            //Adding a point for on correct answer
             correct = correct + 1;
-            submitBtn.setEnabled(false);//Disableing the button
+            //Disabling the submit button
+            submitBtn.setEnabled(false);
+            //Clearing Answer text field
             answerTxtField.setText("");
+            //Setting the next button to enabled
             nextBtn.setEnabled(true);
+            //Not allowing the message of an incorrect input to go out
             messageLbl.setVisible(false);
         }
         else if (answer.equalsIgnoreCase("b") || answer.equalsIgnoreCase("c") || answer.equalsIgnoreCase("d") && question == 1 ){
+            //Adding a point to the incorrect answers
             incorrect = incorrect + 1;
-            submitBtn.setEnabled(false);//Disableing the button
+            //Disabling the submit button
+            submitBtn.setEnabled(false);
+            //Clearing Answer text field
             answerTxtField.setText("");
+            //Setting the next button to enabled
             nextBtn.setEnabled(true);
+            //Not allowing the message of an incorrect input to go out
             messageLbl.setVisible(false);
         }
         else if (answer.equalsIgnoreCase("a") || answer.equalsIgnoreCase("c") || answer.equalsIgnoreCase("d") && question == 2 ){
+            //Adding a point to the incorrect answers
             incorrect = incorrect + 1;
-            submitBtn.setEnabled(false);//Disableing the button
+            //Disabling the submit button
+            submitBtn.setEnabled(false);
+            //Clearing Answer text field
             answerTxtField.setText("");
+            //Setting the next button to enabled
             nextBtn.setEnabled(true);
+            //Not allowing the message of an incorrect input to go out
             messageLbl.setVisible(false);
         }
         else if (answer.equalsIgnoreCase("a") || answer.equalsIgnoreCase("c") || answer.equalsIgnoreCase("b") && question == 3 ){
+            //Adding a point to the incorrect answers
             incorrect = incorrect + 1;
-            submitBtn.setEnabled(false);//Disableing the button
+            //Disabling the submit button
+            submitBtn.setEnabled(false);
+            //Clearing Answer text field
             answerTxtField.setText("");
+            //Setting the next button to enabled
             nextBtn.setEnabled(true);
+            //Not allowing the message of an incorrect input to go out
             messageLbl.setVisible(false);
         }
         else if (answer.equalsIgnoreCase("a") || answer.equalsIgnoreCase("c") || answer.equalsIgnoreCase("d") && question == 4 ){
+            //Adding a point to the incorrect answers
             incorrect = incorrect + 1;
-            submitBtn.setEnabled(false);//Disableing the button
+            //Disabling the submit button
+            submitBtn.setEnabled(false);
+            //Clearing Answer text field
             answerTxtField.setText("");
+            //Setting the next button to enabled
             nextBtn.setEnabled(true);
+            //Not allowing the message of an incorrect input to go out
             messageLbl.setVisible(false);
         }
         else if (answer.equalsIgnoreCase("b") || answer.equalsIgnoreCase("c") || answer.equalsIgnoreCase("d") && question == 5 ){
+            //Adding a point to the incorrect answers
             incorrect = incorrect + 1;
-            submitBtn.setEnabled(false);//Disableing the button
+            //Disabling the submit button
+            submitBtn.setEnabled(false);
+            //Clearing Answer text field
             answerTxtField.setText("");
+            //Setting the next button to enabled
             nextBtn.setEnabled(true);
+            //Not allowing the message of an incorrect input to go out
             messageLbl.setVisible(false);
         }
         else {
+            //If you enter any other caracter than A,B,C,D             
             messageLbl.setVisible(true);
             messageLbl.setText("Enter A,B,C,D");
         }
