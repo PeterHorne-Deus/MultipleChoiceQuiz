@@ -1,20 +1,30 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Peter Horne-Deus
+ * MultipleChoiceQuiz.java
+ * This is a multiple choice quiz program
+ * October 11,2018
  */
 
 package multipleChoiceQuiz;
 
-/**
- *
- * @author pehor9164
- */
-public class MultipleChoiceQuiz extends javax.swing.JFrame {
+import java.awt.Color;
+import java.text.DecimalFormat;
 
-    /**
-     * Creates new form MultipleChoiceQuiz
-     */
+public class MultipleChoiceQuiz extends javax.swing.JFrame {
+    //Publicly Declared Variables
+    int question = 0;
+    int correct = 0;
+    int incorrect = 0;
+    int randomNumber,randomNumber1,randomNumber2 ;
+    double percentage;
+    
+    //Strings
+    String answer;
+    
+    //Creating a decimal format
+    DecimalFormat percent = new DecimalFormat("###");
+    
+        
     public MultipleChoiceQuiz() {
         initComponents();
         
@@ -25,8 +35,11 @@ public class MultipleChoiceQuiz extends javax.swing.JFrame {
         answerBLbl.setVisible(false);
         answerCLbl.setVisible(false);
         answerDLbl.setVisible(false);
-        
-        //Publicly Declared Variables
+        answerLbl.setVisible(false);
+        submitBtn.setVisible(false);
+        answerTxtField.setVisible(false);
+        incorrectLbl.setVisible(false);
+        correctLbl.setVisible(false);
         
     }
 
@@ -39,7 +52,7 @@ public class MultipleChoiceQuiz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        backgroundPnl = new javax.swing.JPanel();
         titleLbl = new javax.swing.JLabel();
         instructionsLbl = new javax.swing.JLabel();
         instructionTwoLbl = new javax.swing.JLabel();
@@ -53,30 +66,40 @@ public class MultipleChoiceQuiz extends javax.swing.JFrame {
         answerDLbl = new javax.swing.JLabel();
         answerBLbl = new javax.swing.JLabel();
         questionLbl = new javax.swing.JLabel();
+        answerLbl = new javax.swing.JLabel();
+        answerTxtField = new javax.swing.JTextField();
+        submitBtn = new javax.swing.JButton();
+        incorrectLbl = new javax.swing.JLabel();
+        correctLbl = new javax.swing.JLabel();
+        messageLbl = new javax.swing.JLabel();
+        percentageLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        backgroundPnl.setBackground(new java.awt.Color(255, 153, 255));
+        backgroundPnl.setForeground(new java.awt.Color(255, 51, 255));
+        backgroundPnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         titleLbl.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
         titleLbl.setText("Peter's Multiple Choice Quiz");
-        jPanel1.add(titleLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
+        backgroundPnl.add(titleLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
         instructionsLbl.setText("Instructions: ");
-        jPanel1.add(instructionsLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+        backgroundPnl.add(instructionsLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         instructionTwoLbl.setText("2) Type The Letter Of The Correct Answer Into The Box");
-        jPanel1.add(instructionTwoLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        backgroundPnl.add(instructionTwoLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         instructionThreeLbl.setText("3) Press Submit");
-        jPanel1.add(instructionThreeLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        backgroundPnl.add(instructionThreeLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
+        instructionOneLbl.setBackground(new java.awt.Color(255, 153, 255));
         instructionOneLbl.setText("1) Read Question");
         instructionOneLbl.setOpaque(true);
-        jPanel1.add(instructionOneLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        backgroundPnl.add(instructionOneLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         instructionFourLbl.setText("4) Press Next");
-        jPanel1.add(instructionFourLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        backgroundPnl.add(instructionFourLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         nextBtn.setText("Next");
         nextBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -84,37 +107,66 @@ public class MultipleChoiceQuiz extends javax.swing.JFrame {
                 nextBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(nextBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, -1, -1));
+        backgroundPnl.add(nextBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, -1, -1));
 
         questionNumLbl.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
         questionNumLbl.setText("Question #1");
-        jPanel1.add(questionNumLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 130, 20));
+        backgroundPnl.add(questionNumLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 130, 20));
 
         answerALbl.setText("A)");
-        jPanel1.add(answerALbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 320, 20));
+        backgroundPnl.add(answerALbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 320, 20));
 
         answerCLbl.setText("C)");
-        jPanel1.add(answerCLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 320, 20));
+        backgroundPnl.add(answerCLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 320, 20));
 
         answerDLbl.setText("D)");
-        jPanel1.add(answerDLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 320, 20));
+        backgroundPnl.add(answerDLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 320, 20));
 
         answerBLbl.setText("B)");
-        jPanel1.add(answerBLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 320, 20));
+        backgroundPnl.add(answerBLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 320, 20));
 
         questionLbl.setFont(new java.awt.Font("Ti73pc", 0, 14)); // NOI18N
         questionLbl.setText("How Many Bits Are In A Byte?");
-        jPanel1.add(questionLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
+        backgroundPnl.add(questionLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+
+        answerLbl.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        answerLbl.setText("Answer:");
+        backgroundPnl.add(answerLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, -1, -1));
+        backgroundPnl.add(answerTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 90, -1));
+
+        submitBtn.setText("Submit");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
+        backgroundPnl.add(submitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+
+        incorrectLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        incorrectLbl.setText("Incorrect Answers: 0");
+        backgroundPnl.add(incorrectLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        correctLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        correctLbl.setText("Correct Answers: 0");
+        backgroundPnl.add(correctLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
+
+        messageLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        messageLbl.setForeground(new java.awt.Color(255, 0, 0));
+        backgroundPnl.add(messageLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 190, 20));
+
+        percentageLbl.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        percentageLbl.setForeground(new java.awt.Color(102, 255, 255));
+        backgroundPnl.add(percentageLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 260, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backgroundPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backgroundPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -134,8 +186,178 @@ public class MultipleChoiceQuiz extends javax.swing.JFrame {
         answerBLbl.setVisible(true);
         answerCLbl.setVisible(true);
         answerDLbl.setVisible(true);
+        answerLbl.setVisible(true);
+        submitBtn.setVisible(true);
+        answerTxtField.setVisible(true);
+        incorrectLbl.setVisible(true);
+        correctLbl.setVisible(true);
+        
+        //Reenabling the submit button
+        submitBtn.setEnabled(true);
+        
+        //Making it the first question
+        question = question + 1;
+        
+        //Creating Question One
+        if (question == 1){
+            //random Numbers
+            randomNumber = (int)Math.round(Math.random()*16+1);
+            randomNumber1 = (int)Math.round(Math.random()*31+1);
+            randomNumber2 = (int)Math.round(Math.random()*3+1);
+            answerALbl.setText("A) 8");
+            answerBLbl.setText("B) " + randomNumber);
+            answerCLbl.setText("C) " + randomNumber1);
+            answerDLbl.setText("D) " + randomNumber2);
+        }
+        else if (question == 2){
+            questionNumLbl.setText("Question #2");
+            questionLbl.setText("How Many Pins Are In The Main Mother Board Power Connector?");
+            //random Numbers
+            randomNumber = (int)Math.round(Math.random()*13+1);
+            randomNumber1 = (int)Math.round(Math.random()*11+1);
+            randomNumber2 = (int)Math.round(Math.random()*7+1);
+            answerALbl.setText("A) " + randomNumber1);
+            answerBLbl.setText("B) 24");
+            answerCLbl.setText("C) " + randomNumber2);
+            answerDLbl.setText("D) " + randomNumber);
+        }
+        else if (question == 3){
+            questionNumLbl.setText("Question #3");
+            questionLbl.setText("What Item On The Mother Board Keeps Time When Computer Is Off");
+            answerALbl.setText("A) Clock");
+            answerBLbl.setText("B) RAM");
+            answerCLbl.setText("C) SATA");
+            answerDLbl.setText("D) CMOS");
+        }
+        else if (question == 4){
+            questionNumLbl.setText("Question #4");
+            questionLbl.setText("What Is The Most Popular Coding Language");
+            answerALbl.setText("A) Python");
+            answerBLbl.setText("B) Java");
+            answerCLbl.setText("C) SATA");
+            answerDLbl.setText("D) Arduino");
+        }
+        else if (question == 5){
+            questionNumLbl.setText("Question #5");
+            questionLbl.setText("Why Is Machine Code In Binary");
+            answerALbl.setText("A) Transistor");
+            answerBLbl.setText("B) Resistor");
+            answerCLbl.setText("C) Potentiometer");
+            answerDLbl.setText("D) Radio Button");
+        }
+        else {
+        //Turning off labels    
+        questionNumLbl.setVisible(false);
+        questionLbl.setVisible(false);
+        answerALbl.setVisible(false);
+        answerBLbl.setVisible(false);
+        answerCLbl.setVisible(false);
+        answerDLbl.setVisible(false);
+        answerLbl.setVisible(false);
+        submitBtn.setVisible(false);
+        answerTxtField.setVisible(false);
+        //Getting the final percentage of the answers
+        percentage = ((double)correct/5)*100;
+        percentageLbl.setText("You got " + percent.format(percentage) + "%");
+        
+        }
+        //disabling the next button until question is answerd
+        if (question == 6){
+            nextBtn.setEnabled(true);
+        }
+        else{
+            nextBtn.setEnabled(false);
+        }
         
     }//GEN-LAST:event_nextBtnActionPerformed
+
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        //getting user input
+        answer = answerTxtField.getText();
+
+       
+        
+        
+        //Seeing if it is correct depending on question 
+        if (answer.equalsIgnoreCase("a") && question == 1){
+            correct = correct + 1;
+            submitBtn.setEnabled(false);//Disableing the button
+            answerTxtField.setText("");
+            nextBtn.setEnabled(true);
+            messageLbl.setVisible(false);
+        }
+        else if (answer.equalsIgnoreCase("b") && question == 2){
+            correct = correct + 1;
+            submitBtn.setEnabled(false);//Disableing the button
+            answerTxtField.setText("");
+            nextBtn.setEnabled(true);
+            messageLbl.setVisible(false);
+        }
+        else if (answer.equalsIgnoreCase("d") && question == 3){
+            correct = correct + 1;
+            submitBtn.setEnabled(false);//Disableing the button
+            answerTxtField.setText("");
+            nextBtn.setEnabled(true);
+            messageLbl.setVisible(false);
+        }
+        else if (answer.equalsIgnoreCase("b") && question == 4){
+            correct = correct + 1;
+            submitBtn.setEnabled(false);//Disableing the button
+            answerTxtField.setText("");
+            nextBtn.setEnabled(true);
+            messageLbl.setVisible(false);
+        }
+        else if (answer.equalsIgnoreCase("a") && question == 5){
+            correct = correct + 1;
+            submitBtn.setEnabled(false);//Disableing the button
+            answerTxtField.setText("");
+            nextBtn.setEnabled(true);
+            messageLbl.setVisible(false);
+        }
+        else if (answer.equalsIgnoreCase("b") || answer.equalsIgnoreCase("c") || answer.equalsIgnoreCase("d") && question == 1 ){
+            incorrect = incorrect + 1;
+            submitBtn.setEnabled(false);//Disableing the button
+            answerTxtField.setText("");
+            nextBtn.setEnabled(true);
+            messageLbl.setVisible(false);
+        }
+        else if (answer.equalsIgnoreCase("a") || answer.equalsIgnoreCase("c") || answer.equalsIgnoreCase("d") && question == 2 ){
+            incorrect = incorrect + 1;
+            submitBtn.setEnabled(false);//Disableing the button
+            answerTxtField.setText("");
+            nextBtn.setEnabled(true);
+            messageLbl.setVisible(false);
+        }
+        else if (answer.equalsIgnoreCase("a") || answer.equalsIgnoreCase("c") || answer.equalsIgnoreCase("b") && question == 3 ){
+            incorrect = incorrect + 1;
+            submitBtn.setEnabled(false);//Disableing the button
+            answerTxtField.setText("");
+            nextBtn.setEnabled(true);
+            messageLbl.setVisible(false);
+        }
+        else if (answer.equalsIgnoreCase("a") || answer.equalsIgnoreCase("c") || answer.equalsIgnoreCase("d") && question == 4 ){
+            incorrect = incorrect + 1;
+            submitBtn.setEnabled(false);//Disableing the button
+            answerTxtField.setText("");
+            nextBtn.setEnabled(true);
+            messageLbl.setVisible(false);
+        }
+        else if (answer.equalsIgnoreCase("b") || answer.equalsIgnoreCase("c") || answer.equalsIgnoreCase("d") && question == 5 ){
+            incorrect = incorrect + 1;
+            submitBtn.setEnabled(false);//Disableing the button
+            answerTxtField.setText("");
+            nextBtn.setEnabled(true);
+            messageLbl.setVisible(false);
+        }
+        else {
+            messageLbl.setVisible(true);
+            messageLbl.setText("Enter A,B,C,D");
+        }
+        
+        //Setting the incorrect and correct lable 
+        correctLbl.setText("Correct Answers: " + correct);
+        incorrectLbl.setText("Incorrect Answers: " + incorrect);
+    }//GEN-LAST:event_submitBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,15 +399,22 @@ public class MultipleChoiceQuiz extends javax.swing.JFrame {
     private javax.swing.JLabel answerBLbl;
     private javax.swing.JLabel answerCLbl;
     private javax.swing.JLabel answerDLbl;
+    private javax.swing.JLabel answerLbl;
+    private javax.swing.JTextField answerTxtField;
+    private javax.swing.JPanel backgroundPnl;
+    private javax.swing.JLabel correctLbl;
+    private javax.swing.JLabel incorrectLbl;
     private javax.swing.JLabel instructionFourLbl;
     private javax.swing.JLabel instructionOneLbl;
     private javax.swing.JLabel instructionThreeLbl;
     private javax.swing.JLabel instructionTwoLbl;
     private javax.swing.JLabel instructionsLbl;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel messageLbl;
     private javax.swing.JButton nextBtn;
+    private javax.swing.JLabel percentageLbl;
     private javax.swing.JLabel questionLbl;
     private javax.swing.JLabel questionNumLbl;
+    private javax.swing.JButton submitBtn;
     private javax.swing.JLabel titleLbl;
     // End of variables declaration//GEN-END:variables
 }
